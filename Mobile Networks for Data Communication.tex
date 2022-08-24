@@ -1,0 +1,87 @@
+\documentclass[dvips,11pt,a4paper,twoside]{report}
+%
+% Lecture notes for course 34312 Introduction to networks for Telecommunication
+% and Data communication.
+%
+% (C) Copyright 2022, Lars Staalhagen
+%
+\usepackage{layout}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[dvips]{graphicx}
+\usepackage{setspace}
+\usepackage{xspace}
+\usepackage{tabularx}
+\usepackage{wrapfig}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{lscape}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{soul}
+\usepackage{subcaption}
+\usepackage{supertabular}
+\usepackage{multirow}
+\usepackage[dvips]{geometry}
+\usepackage{ragged2e}
+\usepackage{makecell}
+\usepackage{framed}
+\usepackage[colorlinks]{hyperref}
+\usepackage[chapter,numbib,nottoc,notlot,notlof]{tocbibind}
+
+%%
+%% Use for custom location of graphics ......
+%%
+% \graphicspath{{figures/}}
+\graphicspath{{../../Figures/UK/}}
+
+%%
+%% Set non-standard dimensions for the page layout
+%%
+\setlength{\hoffset}{0pt}
+\setlength{\voffset}{0pt}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\textwidth}{16cm}
+\setlength{\topmargin}{-37pt}
+\setlength{\textheight}{670pt}
+\setlength{\footskip}{60pt}
+
+\newenvironment{opgave}[0]%
+{\vspace{9pt}\textbf{Exercise: }}{}
+
+\newcommand{\ie}{i.e.,\xspace}
+\newcommand{\eg}{e.g.,\xspace}
+\newcommand{\cf}{c.f.,\xspace}
+\newcommand{\gbn}{Go--Back--N}
+\newcommand{\selrej}{Selective--Reject}
+\newcommand{\nodeb}{Node~B}
+
+\newcommand{\mus}{\textrm{ }\mu\textrm{s}}
+\newcommand{\us}{$\textrm{ }\mu{}\textrm{s}$}
+\newcommand{\bps}{~bps}
+\newcommand{\kbps}{~kbps}
+\newcommand{\Mbps}{~Mbps}
+\newcommand{\Gbps}{~Gbps}
+
+\newcommand{\tbp}[1]{\begin{quote}\centering\textbf{XXXX #1 XXXXX}\end{quote}}
+
+\widowpenalty=10000
+\clubpenalty=10000
+
+\newsavebox{\customcaption}
+
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{4}
+
+\begin{document}
+\pagenumbering{roman}
+\include{titlepage2}   %% Translated
+\clearpage\tableofcontents
+\clearpage\pagenumbering{arabic}
+\include{teleservicesv2}   %% Translated
+\include{plmn}             %% Translated
+\appendix\renewcommand{\appendixname}{Appendix}
+\include{acronyms2}
+% \include{cdma_app}         %% Translated
+\end{document}

@@ -1,0 +1,561 @@
+% !TeX spellcheck = en_GB
+\clearpage\chapter{Cellular mobile networks}
+
+\section{Cellular networks}\label{sec:cellularnetworks}
+In mobile communication networks, the radio communication occurs between the subscriber's mobile terminal\footnote{Usually a traditional mobile phone but it may be any kind of device that has the ability to communicate.} and a base station consisting of a radio transceiver and an antenna. The base station is connected to the rest of the mobile communication network, as illustrated in Figure~\ref{fig:ms_and_basestation}, using (today) optical fibers or microwave links. An important concept is a \emph{cell}, which represents the area where a mobile phone can communicate with a specific base station. A network where a mobile phone can move between cells and still communicate is called a \emph{cellular network}.
+
+\begin{figure}[htbp]
+\centering
+\scalebox{0.7}{\includegraphics{ms_and_basestation}}
+\captionsetup{format=hang,margin=2cm}
+\caption{\label{fig:ms_and_basestation}Cellular network.}
+\end{figure}
+
+The distance between the mobile phone and a base station is limited for a number of reasons:
+
+\begin{itemize}
+%
+\item The transmission power of a mobile must be limited to avoid that the battery is drained too fast, but as a radio signal attenuates with the distance (see section \ref{sec:pathloss}), the maximum distance between the mobile phone and the base station must be limited to ensure that the base station always receives a sufficiently strong radio signal.
+%
+\item Any cell has a capacity limit, such as the total amount of data that can be transmitted to and from the mobile phones in the cell. In areas with a high population density (e.g., major cities), the number of subscribers per $\textrm{km}^2$ is high, and the network must have a high capacity per $\textrm{km}^2$.  This means many cells are needed to cover the entire city, so one cell covers only a small area in this case. Cells in rural areas usually cover a larger area due to a lower population density. In a typical GSM network, a cell in a large city often only covers an area of around 1 $\textrm{km}^2$, whereas rural cells can cover an area of up to 10-100$\textrm{ km}^2$.
+%
+\end{itemize}
+
+To cover a large geographical area, such as an entire country, the operator must install many cells, and a mobile communication network based on this principle is called a \emph{cellular network}, as illustrated in Figure~\ref{fig:cellular}.
+
+\begin{figure}[htbp]
+\centering
+\scalebox{0.7}{\includegraphics{cellular3}}
+\caption{\label{fig:cellular}Cellular network.}
+\end{figure}
+
+Cells are not hexagonal in reality since the propagation of radio waves is influenced by different physical conditions -- see section~\ref{chap:radio}. Furthermore, cells overlap so there are areas where a mobile phone can communicate in more than one cell, \ie with more than one base station.
+
+In Figure~\ref{fig:cellular}, the base stations were placed in the centres of the cells and radio signals would propagate in all directions from the base station that use \emph{omnidirectional} antennas. Another configuration is often used in cities, where the area around the actual antenna mast (also called a \emph{site}) is divided into \emph{sectors} (equal to cells), as illustrated in Figure~\ref{fig:sectorized_3}, where each colour represents cells that share the same antenna mast.
+
+\begin{figure}[htbp]
+\centering
+\scalebox{0.7}{\includegraphics{sectorized_3}}
+\caption{\label{fig:sectorized_3}Cells as sectors.}
+\end{figure}
+
+In Figure~\ref{fig:sectorized_3}, each site has three antennas that transmits in a ''$120^\circ$'' pattern, so the site supports three antennas and thereby three cells. This configuration is preferred in cities since it reduces the need for sites, compared to the configuration in Figure~\ref{fig:cellular}, where each cell required its own site. Other configurations are also found, \eg four antennas, each covering about $90^\circ$ or two antennas that cover $180^\circ$ each.
+
+\subsection{Cell sites}
+Originally, a cell site consisted of an antenna mast with the actual antenna on top connected to the radio transceiver and baseband (BB) unit; both of which would be located in a cabinet or even a small building near the bottom of the mast, as illustrated in Figure~\ref{fig:site_old}.
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{.45\textwidth}
+\centering\scalebox{0.7}{\includegraphics{sites_oldstyle}}
+\caption{\label{fig:site_old}Old type of cell sites.}
+\end{subfigure}
+\begin{subfigure}[t]{.45\textwidth}
+\centering\scalebox{0.7}{\includegraphics{sites_newstyle}}
+\caption{\label{fig:site_new}New type of cell sites.}
+\end{subfigure}
+\caption{\label{fig:site}Old and new types of cell sites.}
+\end{figure}
+
+One problem with this solution is that the cable connecting the radio transmitter to the antenna is a coaxial cable that attenuates the radio signal, so that the radio transmitter must output a higher power to ensure a given radiated output power from the antenna. In the first generations of mobile networks, the electronics at the ground used a significant amount of power, so in addition to the electronics, significant cooling was also required.
+
+With the technological evolution, it has been possible to decrease the size of the electronics, so it is common today to see the site configuration in Figure~\ref{fig:site_new}. Here, a \emph{Remote Radio Head} (RRH) is placed on the mast near the antenna. From the baseband unit at the bottom, the RRH receives a digital version of the radio signal which it converts to an analog signal and amplifies. The advantages of this solution is that only a very short coaxial cable is needed between the RRH and the antenna (thus reducing the power loss), whereas the connection between the baseband unit and the RRH normally uses optical fiber (in addition to a power cable for the RRH).
+
+Due to technological advances, 5G antennas can be more advanced and an antenna unit will contain many individual antennas with integrated electronics, corresponding to the RRH, so it will be referred to as \emph{Active Antenna Systems} (AAS). In this case, only a optical fiber (and power) is needed between the baseband unit and the AAS.
+ 
+
+\subsection{Intercell interference}
+Since the cells in a mobile communication network overlap, there are areas where a mobile phone can communicate with more than one base station. Therefore, it must be possible for a mobile phone to ''tune in'' on a specific base station and ignore other base stations' transmissions. Different generations of mobile communication technologies have solved this problem in different ways:
+
+\begin{itemize}
+%
+\item\textbf{2\textsuperscript{nd} generation} -- In GSM (and GPRS and EDGE), neighbour cells use different frequency channels within the operator's frequency band, so a mobile phone ''listens'' to a specific cell by tuning its radio receiver to the cell's frequency channel. Since neighbour cells use other frequency channels, the mobile phone receives only the transmissions from the cell that it is ''listening'' to. Since the number of frequency channels available to an operator is far less than the number of cells, so an operator must ''reuse'' frequency channels, \ie many cells will use the same frequency channel. This will not be a problem as long as the cells that are using the same frequency channel(s) are far from each other. So when a mobile phone receives a strong signal from the current cell, signals from other cells that use the same frequency channel will be much weaker so they do not interfere.  Depending on the capacity required in a cell, the operator can assign more than one frequency channel to the cell since the capacity increases with the number of assigned frequency channels, but when another frequency channel is added to a cell, the operator must ensure that the new frequency channel is not used in nearby cells.
+%
+\item\textbf{3\textsuperscript{rd} generation} -- In UMTS, neighbour cells use the same frequency, so different cells use different \emph{scrambling codes}. The transmissions from different base stations are coded using different scrambling codes, so a mobile phone will use the scrambling code from the intended cell to ''descramble'' the received signal. Transmissions from neighbour cells use other scrambling codes, so when a mobile phone unscrambles the received signal, the transmissions from the neighbour cells are only seen as additional background noise.
+%
+\item\textbf{4\textsuperscript{th} and 5\textsuperscript{th} generation} -- In LTE and 5G, neighbour cells also use the same frequency, but here the base stations communicate to coordinate the transmissions in neighbour cells to minimise the interference.
+\end{itemize}
+
+It is also possible for an operator to supplement the coverage of traditional cells (often called \emph{macro cells}) with smaller cells where more capacity is required, typically because of a higher number of subscribers in a small area such as an airport. These other cells have a smaller coverage, and for this reason, they are referred to as \emph{micro cells} and \emph{pico cells}. A related type of cell is \emph{femto cells}, but this type of cell is connected to the core part of a mobile network in a different way than the other cells.
+
+\subsection{Mobility management and tracking areas}
+\label{sec:locationareas}
+The term \emph{mobility management} describes the procedures in a mobile communication network that keeps track of the (approximate) location of the individual mobile phones, both when the mobile phone is active (\eg sending/receiving Internet traffic), but also when the mobile phone is idle (\ie the mobile phone is turned on, but is currently not transmitting or receiving information).
+
+As long as a mobile phone is turned on, it continuously listens for signalling messages from a close-by base station\footnote{If the transmissions from several base stations are received with similar signal strength, the mobile phone may not listen to the (geographically) closest base station, but just to a base station with a strong signal.}. A mobile phone is said to be \emph{camped on} a specific cell if the mobile phone is configured to receive and process the transmissions from one particular cell. When a mobile phone moves, the current cell's signal strength may become too weak for the mobile phone to receive the messages properly from the cell, so the mobile phone will switch to another cell with a stronger signal.
+
+If a mobile phone is active (\ie sending or receiving packets), the network knows the mobile phone's current cell, but if the mobile phone is idle (\ie the mobile phone is turned on, but not currently communicating), the network does not know the precise cell that the mobile phone is camped on.
+
+If a data packet is to be sent to the mobile phone, the network must know the mobile phone's approximate location so that the network can ''announce'' the incoming data packet. This ''announcement'' is called \emph{pageing}, and in the pageing procedure, the network broadcasts a \emph{pageing message} in an area (a group of cells) where it believes the mobile phone is at the moment. When the mobile phone receives the pageing message, it replies as illustrated in Figure~\ref{fig:pageing}.
+\begin{figure}[htbp]
+\centering
+\scalebox{0.7}{\includegraphics{pageing}}
+\caption{\label{fig:pageing}Pageing of a mobile phone in a group of cells.}
+\end{figure}
+
+If the network did not know the mobile phone's approximate location, then the pageing message would have to be broadcasted in all cells of the entire network, which would cause an unnecessary load in all cells.
+
+Therefore, cells are grouped into \emph{areas}, as illustrated in Figure~\ref{fig:locationareas}, where the colours of the cells indicate to which area they belong. An idle mobile phone must inform the network about its position, \ie in which area it is when it enters a new area. This means that the network only knows in which area, an idle mobile phone is located, but not which cell the mobile phone is camped on. On the other hand, this means that the network does not need to broadcast a pageing message in all the cells of the network, but only in the cells of an area.
+
+\begin{figure}[htbp]
+	\centering
+	\scalebox{0.7}{\includegraphics{locationareas}}
+	\caption{\label{fig:locationareas}Grouping cells into areas.}
+\end{figure}
+
+The operator's preferences determine how many cells are included in an area. If areas contain few cells, the cell-load due to the pageing messages will be small, but the mobile phone will more frequently detect that it has entered a new area, so it has to inform the network of its new area, \ie a mobile phone would generate more signalling traffic. If areas contain many cells, the mobile phone will less frequently have to inform the network that it has entered a new area, but then the pageing messages must be broadcasted in  more cells. Therefore, the number of cells in an area is a trade-off; typically an area in GSM contains between 20 and 30 cells.
+
+In LTE and 5G these areas are referred to as tracking areas\footnote{GSM/GPRS/UMTS used the terms \emph{location area} and \emph{routing areas} for voice and data traffic, respectively, but the concept is similar.}.
+
+\section{Network architectures for mobile communication networks}
+\label{sec:mobile_netarch}
+The term \emph{network architecture} refers in this context to the structure/topology of a mobile operator's network, \ie which network nodes and functions are included in the network architecture and how these are interconnected. Here, only the network architectures of LTE and 5G will be discussed.
+
+\subsection{LTE network architecture}
+The network architecture for LTE is illustrated in Figure~\ref{fig:lte_architecture}, where solid lines represent flows of the subscriber's data, while dotted lines represent signalling flows.
+
+\begin{figure}[htbp]
+\centering
+\scalebox{0.7}{\includegraphics{lte_architecture3}}
+\caption{\label{fig:lte_architecture}LTE network architecture.}
+\end{figure}
+
+The radio access part in LTE consists of the eNodeBs\footnote{eNodeB $\approx$ Evolved Node B.} which performs the following functions:
+
+\begin{itemize}
+%
+\item Scheduling of the transmissions to and from the UEs in a cell to ensure that the Quality-of-Service goals are satisfied.
+%
+\item Mobility management related to handovers.
+%
+\item Interference management: Since cells in LTE use the same frequency channel, a UE in an area covered by more than one cell can experience interference, i.e., that transmissions from the desired eNodeB experiences interference by transmissions from another eNodeB. To reduce interference neighbour eNodeBs communicate via the X2 interface to coordinate their transmissions to minimise the interference experienced by UEs.
+%
+\end{itemize}
+
+In the core part of the architecture, the \emph{serving GateWay} (sGW) is responsible for forwarding the subscribers' traffic between the PDN-GW and the eNodeB that a subscriber's UE is currently associated with. 
+
+\emph{Packet Data Network GateWay} (PDN-GW\footnote{Some literature refers to this as a PGW (Packet GateWay).}) is a gateway to the Internet or other external networks. One task of the PDN-GW is to assign IP address to the subscriber's UE when it attaches to the network. When a UE has received an IP address from a PDN-GW, all IP packets to/from this IP-address of the UE will be sent to and received from the Internet via this PDN-GW. If the UE roams, \ie uses to another operator's network, the Internet traffic is sent via the sGW in the foreign network to/from the PDN-GW in the subscriber's home network, and from here, to/from the Internet.
+
+Signalling in the core part is handled by the \emph{Mobility Management Entity} (MME), which includes tasks such as authenticating an UE that attempts to log on to the network, requesting an IP address for an UE from the PDN-GW (via the sGW) and handling mobility management in the core part. 
+
+Finally, the \emph{Home Subscriber Server} (HSS) database contains information about subscribers, such as their identity, phone number, list of services that the subscriber may use, and so on
+
+The network in Figure~\ref{fig:lte_architecture} only shows one sGW and one MME, but a real LTE network will normally have multiple sGWs and MMEs that controls a number of eNodeBs.
+
+\subsection{5G architecture}
+Figure~\ref{fig:5grefarch} illustrates the so-called \emph{reference architecture} for 5G.
+\begin{figure}[htbp]
+\centering
+\scalebox{0.5}{\includegraphics{5grefarch}}
+\caption{\label{fig:5grefarch}5G reference architecture.}
+\end{figure}
+
+In Figure~\ref{fig:5grefarch}, the functionality is initially divided into a \emph{control plane} and a \emph{user plane}. The control plane contains the functions that controls the network, while the user plane contains the functions that handle the users' information. The functions that are used in  the procedures described in the next sections (attachment, mobility management, and handovers), are considered as part of the control plane. The purpose of the functions in the user plane is to forward user traffic between the UEs and the Internet.
+
+The following functions have been defined for the control plane.
+\begin{itemize}
+%
+\item\textbf{Network Slice Selection Function (NSSF)} -- Used in relation to a concept called \emph{network slicing}, which is not discussed further in this lecture note.
+%
+\item\textbf{AUthentication Server Function (AUSF)} -- Used for authenticating a UE during the attachment procedure.
+%
+\item\textbf{Unified Data Management (UDM)} -- Central database with information about the subscribers. Similar to the HSS in LTE.
+%
+\item\textbf{Authentication Management Function (AMF)} -- Used in conjunction with the AUSF during the attachment procedure.
+%
+\item\textbf{Session Management Function (SMF)} -- Contains the functionality for the management of \emph{sessions}, which are used to describe a UE's ability to send and receive packets. When a UE has performed an attachment (see later), it is ''logged on'' to the mobile network, but it must also establish a session when it wants to send and receive packets. When a UE attempts to establish a session, it must inform the network about the capacity required and whether it requires additional services. The SMF checks with the UDM whether the requested capacity or additional services is within the user's subscription before proceeding. The SMF also allocates IP addresses for the UEs.
+%
+\item\textbf{Policy Control Function (PCF)} -- Furthermore, when a UE attempts to establish a session, the PCF responsible for verifying whether the current cell has sufficient available capacity for the session.
+%
+\item\textbf{Application Function (AF)} -- Any supplementary services that the operator wishes to offer (in addition to the basic service, i.e., transfer of information to and from UEs), these supplementary services are implemented in an AF.
+%
+\end{itemize}
+
+The user plane contains the \emph{User Plane Functions} (UPF) that contains all the required functionality for forwarding IP packets between a subscriber's UE and the Internet. This means that a UPF mostly represents the combined functionality of the sGW and PDN-GW in LTE.
+
+A 5G base station is called a \emph{next \textbf{g}eneration \textbf{N}ode \textbf{B}} (gNB).
+
+The reference architecture for 5G specifies functionalities instead of network devices because many mobile networks today are based on \emph{virtualisation}. In a traditional thinking, a network device, such as the ones in Figure~\ref{fig:lte_architecture}, will be separate physical units interconnected by various transmission systems, such as optical fibre, but this is not always an optimal solution from a resource point of view -- a large LTE network usually has several sGW devices, but some of these might not be fully utilised all the time, due to varying traffic patterns. However, the sGW network devices are usually dimensioned after the maximum expected load, so there is often an excess of capacity in various parts of the network, which is not optimal from a resource perspective.
+
+However, if the network operator employs virtualisation for the sGWs, there can be a central server that executes a number of copies of the sGW software in parallel, as illustrated in Figure~\ref{fig:virtualization}. This makes it possible for the operator to dynamically add or remove (virtual) sGWs from the network, depending on the required demand.
+\begin{figure}[htbp]
+\centering
+\scalebox{0.7}{\includegraphics{virtualization}}
+\caption{\label{fig:virtualization}Virtualization in a mobile network.}
+\end{figure}
+
+The advantages of virtualisation are that if a (virtual) sGW in the central server doesn't have to process a lot of traffic, the server can allocate more resources for the other (virtual) sGWs in the same server. Since it is not very probable that all sGW in a mobile network are fully loaded simultaneously, then a server that virtualises $N$ sGWs would not have to have the same resources as $N$ separate (physical) sGWs combined.
+
+Many operators have already introduced virtualization in their network (also for older generations), so it was a logical step when 5G was specified to specify functions (that can be executed as processes in a server) rather than (traditional) network devices. It is up to the different network operators to decide how to distribute the necessary functions on the different servers. Redundancy should be ensured, so if a (physical) server (running a number of virtual functions) crashes, its functionalities can be taken over by another server.
+
+\section{Procedures in mobile communication networks}
+This section describes the central procedures in a LTE mobile network, \eg attachment, area updating and handover. Procedures in 5G will not be describe since they are basically similar to the LTE procedures.
+
+\subsection{Attachment and detachment}
+When a mobile phone is powered on, it performs the \emph{attachment} procedure to ''log on'' to the network. A simplified description of this procedure is:
+\begin{enumerate}
+%
+\item The UE must find a cell to camp on. The UE remembers which cell it was camped on when it was turned off, so it attempts to listen for the old cell first. If unsuccessful, the UE scans the LTE frequency bands to find any cell with a strong signal. When a cell has been found, the UE starts listening to the broadcast transmissions in the cell to determine the cell's operator. If this is not UE's normal operator, the UE continues with the scan.
+%
+\item When the UE has found a suitable cell, it transmits an Attach Request message to the eNodeB of the cell, which forwards the message to an MME that controls the cell.
+%
+\item The MME initiates an authentication procedure that verifies the UE (so that the network is confident that it communicates with the correct subscriber) but also verifies the network (so that the UE knows that it communicates with the correct network, and not a ''rogue'' base station).
+%
+\item After successful authentication, the MME informs the HSS that the UE is now active and that the MME controls the current tracking area of the UE.
+%
+\item The MME sends a message to an sGW, which in turn contacts a PDN-GW. The PDN-GW allocates an IP-address\footnote{This IP-address is a private address from the RFC-1918 ranges, so when the user's Internet traffic exits the LTE network, a NAPT translation is performed in the PDN-GW.} for the UE and returns the IP-address to the sGW, which relays the IP-address to the MME and also establishes a connection between itself and the PDN-GW for IP-packets to and from the UE.
+%
+\item The MME relays the IP-address to the eNodeB, which forwards it on the radio interface to the UE. At the same time, the eNodeB establishes a connection to the sGW for the IP-packets to and from the UE.
+%
+\end{enumerate}
+
+When the UE is powered down, a detachment procedure is performed where the UE informs the MME that it is powering down. The MME informs the HSS that the UE is now unavailable, and the PDN-GW is also informed that the IP-address can be deallocated (and reused by other UEs later). Finally, connections between the eNodeB and the sGW and between the sGW and the PDN-GW are terminated.
+
+\subsection{Tracking Area Updating}
+As described in section~\ref{sec:locationareas}, LTE-cells are grouped into \emph{tracking areas} as a compromise between A) how many cells the network needs to broadcast pageing messages in, and B) how often an idle UE needs to send updates about its position when it's moving.
+
+In every cell, the base station periodically broadcasts information about the cell, such as the cell's operator, the cell-id and which tracking area (identified by a unique \emph{Tracking Area Identifier} (TAI)) the cell belongs to. If an (idle) UE moves to a new cell (because of a stronger radio signal in the new cell), it compares the new cell's TAI-value with the TAI-value of the previous cell. If the values are different, the UE has switched to a cell that is part of another tracking area, so the UE performs the tracking area update procedure to inform the network about its new tracking area.
+
+Figure~\ref{fig:trackingareaupdate} illustrates an UE moving in the direction of the arrow, so it will at some point change from a green cell to a blue cell, and thereby, to a new tracking area.
+\begin{figure}[htbp]
+	\centering
+	\scalebox{0.7}{\includegraphics{trackingareaupdate}}
+	\caption{\label{fig:trackingareaupdate}Update of tracking area when changing cells.}
+\end{figure}
+
+The tracking area update procedure consists\footnote{Similar to the attachment procedure described above, this is also a simplified description} of the following steps:
+\begin{enumerate}
+	%
+	\item The UE changes to a new cell. When the UE subsequently receives the $\textrm{TAI}_{\textrm{new}}$ from the new cell, it detects that it is different than the TAI value currently stored in the UE. The UE then initiates the Tracking Area Updating procedure.
+	%
+	\item The UE transmits a message to the MME handling the new cell (here: MME2), informing this that the UE is now in a cell controlled by this MME. The message contains the identity of the UE and the TAI-value of the previous tracking area.
+	%
+	\item If the MME controls both the previous and current tracking area of the UE, the MME simply registers that the UE is now in the new tracking area and sends an acknowledgement to the UE that concludes the Tracking Area Update procedure.
+	%
+	\item If the new MME does not handle the cells in the previous tracking area (as in Figure~\ref{fig:trackingareaupdate}, where MME1 manages the cells in the previous tracking area), the new MME will contact the old MME to announce that a specific UE has left the old tracking area.
+	%
+	\item The old MME sends information about the UE (such as permitted services) to the new MME and subsequently deletes information about the UE in its registers (since the UE is no longer in a cell controlled by the old MME).
+  %
+	\item When the new MME receives information about the UE from the old MME, the new MME stores this information internally and sends an acknowledgement to the UE that its new tracking area has been registered, which concludes the procedure from the UE's point-of-view. Finally, the new MME informs the HSS that the UE is now in an area controlled by the new MME, so in the case of incoming traffic for the UE, it will be the new MME that will be contacted for paging the UE.
+	%
+\end{enumerate}
+
+\subsection{Handovers}\label{sec:handover}
+An essential function in any mobile communication network is to ensure that a call or a data transmission is not terminated abruptly if the user moves between cells, so a call or data transmission that starts in one cell must continue when the UE changes cell. The network must be able to ''move'' a call or data transmission from cell to cell, and this procedure is called a \emph{handover}\footnote{Various literature also uses the term \emph{handoff} for this functionality.}.
+
+In general, a handover is initiated when the quality of the radio link in the current cell deteriorates (\eg drop below a specified threshold), and a neighbour cell is available where the quality of the radio link is better. Different mobile communication technologies have implemented handover procedures differently, depending on A) where the decision to perform a handover is made and B) which information this decision is based on. The three possibilities are:
+
+\begin{itemize}
+%
+\item\textbf{Mobile Controlled Handover} -- where the mobile phone autonomously decides when to perform a handover and the decision is only based on the mobile phone's measurements of the quality of the radio link in the current cell and neighbour cells. This principle is used in the DECT technology\footnote{DECT is technically not a ''real'' mobile communication technology, but when DECT is used to provide a cordless telephony service in, \eg large companies, there are similarities with ''true'' mobile communication networks, \eg that the covered area is divided into smaller areas that are controlled by base stations.}.
+%
+\item\textbf{Network Controlled Handover} -- where the decision to perform a handover is taken by the network alone, based on measurements of the strength of the radio signal from the mobile phone only. The os NMT mobile communication system used this principle.
+%
+\item\textbf{Mobile Assisted Network Controlled Handover} -- where the network decides when to perform a handover, based on both the network's measurements of the strength of the radio signal from the mobile phone and on measurements performed by the UE of the signal strength in the current cell and neighbour cells. This is the most common handover principle in mobile communication technologies today.
+%
+\end{itemize}
+
+\subsubsection{Handovers in LTE}
+The UE continuously measures the strength of the radio signal from the base station in the current cell, and (periodically) measures the strength in neighbouring cells, and all these measurements are transmitted to the eNodeB.
+
+The base station measures the signal strength of the UE's transmissions, and combines these values with the values received from the UE, so the base station can determine the current radio conditions for the UE in both the uplink and the downlink direction. If the radio conditions falls below some threshold (\eg if the UE is moving away from the base station), then the base station will attempt to perform a handover. Based on the neighbour cell measurements from the UE, the current base station selects which neighbour cell that the handover should be the new cell for the UE.
+
+A handover in LTE takes place as illustrated in Figure~\ref{fig:LTE-HO} and described below.
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{\textwidth}
+\centering\scalebox{0.6}{\includegraphics{lte_handover1}}
+\caption{}
+\end{subfigure}
+\begin{subfigure}[t]{\textwidth}
+\centering\scalebox{0.6}{\includegraphics{lte_handover2}}
+\caption{}
+\end{subfigure}
+\begin{subfigure}[t]{\textwidth}
+\centering\scalebox{0.6}{\includegraphics{lte_handover3}}
+\caption{}
+\end{subfigure}
+\caption{\label{fig:LTE-HO}LTE Handover.}
+\end{figure}
+
+Initially, the UE is communicating with the upper eNodeB as illustrated in Figure~\ref{fig:LTE-HO}a), and the UE measures the signal strengths in the current and in neighbour cells and periodically sends these to the eNodeB.
+
+When the upper eNodeB decides that a handover is necessary, it will decide on a neighbour cell (based on the measurements of the UE) and contact the eNodeB in the new cell via the X2 interface to request that the new eNodeB reserves resources in the new cell. If this is possible, the new eNodeB will reply with a positive acknowledgement that also contains relevant radio parameters for the new cell.
+
+The current eNodeB now sends a message (that includes the radio parameters of the new cell) to the UE to instruct the UE to change to the new cell. The UE  switches to the new cell, and because it already has the radio parameters of the new cell, it will be able to communicate in the new cell almost instantaneously.
+
+This type of handover is termed \emph{break-before-make} because the UE ''breaks'' the communication with the old cell before it communicates with the new cell. UMTS could used \emph{make-before-break} handovers, where the UE starts communicating with the new cell for some time before it stops communicating with the old cell. GSM also uses \emph{break-before-make} handover, but here, the mobile phone does not know the radio parameters of the new cell, so the mobile phone must first synchronise with the cell with can take in the order of 100~ms, so there might be a short interruption in the voice signal during a GSM handover.
+
+From the UE's point-of-view, the handover is complete when it starts communicating with the new cell, but a reconfiguration of the core-network is subsequently required. Immediately after the handover, IP-packets from the Internet to the UE are transmitted as in Figure~\ref{fig:LTE-HO}b), \ie via the sGW to the \emph{old} eNodeB (because the sGW is not yet aware of the handover) and then via the X2 interface to the new eNodeB. As this is not an optimal path, the core network is subsequently ''reconfigured'' after the handover, so that the sGW now sends IP-packets directly to the new eNodeB. Packets from the UE will, immediately after the handover, be sent to the new eNodeB and from here directly to the sGW, so in the uplink path is optimal.
+
+The type of LTE handover described above is called an \emph{X2 handover} since it utilises the X2-connection between the two eNodeB. However, not all pair of neighbouring eNodeBs may have an X2 interface between them. In this case, the handover will involve the core part of the network as illustrated in Figure~\ref{fig:LTE_Handover4}. This type of handover is called a \emph{S1 handover} since the interface between eNodeBs and sGWs are called the S1-interface.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=0.6]{lte_handover4}
+\caption{\label{fig:LTE_Handover4}S1 handover in LTE.}
+\end{figure}
+
+In an S1-handover, the old eNodeB will (after the handover) relay IP-packets to the new eNodeB through the sGW as illustrated, but as soon as the core network has been reconfigured, the PDN-GW will forward packets to the correct (new) sGW. If the old and the new eNodeB are not connected to the same sGW, the relaying of packets from the old eNodeB to the new eNodeB takes place via the new eNodeB's sGW.
+
+\section{5G deployment}
+It can be costly for an operator to introduce a new mobile technology in the operator's network, and 5G is no exception.
+
+To simplify the introduction of 5G, most operators (who already have a 4G/LTE mobile network) introduce 5G in the so-called \emph{Non-Standalone Architecture} (NSA) mode. In this case, the operator still uses the 4G core network for control and signalling.
+
+In NSA mode, the mobile is said to be \emph{anchored} on a 4G network, so it receives control messages, such as broadcasted cell information messages and pageing messages via the 4G network. However, when the mobile wants to send/receive user-information, a 5G carrier is activated and added to the mobile's session so (user-)data transfers can utilize the high capacity of 5G NR.
+
+The long term solution for the network operators is to switch to \emph{Standalone Architecture} (SA) mode where the mobile network (in addition to a 5G radio access network) also employs a (true) 5G core network for both control and user traffic. In this case, the mobile only communicates with a 5G network.
+
+\chapter{Radio communication in mobile networks}
+
+\section{Frequency spectrum and frequency bands}
+Any mobile communication technology requires a wireless medium for the transmissions between the subscribers' terminals and the rest of the mobile communication network. In practice, radio transmissions will be used between the terminals and the rest of the network, \ie where the information is carried by (electromagnetic) radio waves. However, only the communication between the subscribers' terminals (\ie mobile phones) and the nearest nodes in the network (\ie the base stations) needs to be based on radio communication. The communication between the base station and the rest of the network is usually based on transmission systems using cables (coaxial cables or optical fibres), especially in the core part of the network, where optical fibres are used almost exclusively.
+
+Since radio communication is used between the subscribers' terminals and the base stations, it is important to select an appropriate frequency band for any mobile communication technology. Radio frequencies lower than approximately 700~MHz are not suitable for mobile communication for several reasons. First, most of the frequency spectrum below this limit has already been reserved, \eg for radio and TV broadcasting. Second, radio transmissions using frequencies at about 30~MHz can be reflected in the ionosphere and interfere with other transmissions far away -- as described later, transmissions from a mobile phone or a base station must be limited to reduce interference and to ensure sufficient capacity. Thirdly, the antenna's dimensions are (depending on the type of antenna) inversely proportional with the transmission frequency, so using a low transmission frequency would require a large antenna on the mobile phone, which would be impractical. 
+
+On the other hand, radio transmissions using frequencies much higher than 1~GHz normally require line-of-sight conditions (\ie that there are no obstacles between the antennas), since windows, walls, etc., block too much of the radio signal at these frequencies. However, frequency bands above 6~GHz may be used for 5G to supplement the lower frequency bands to provide higher capacity, \eg indoors or in open areas, where line-of-sight conditions are satisfied.
+
+A related problem is whether a frequency band selected for a mobile communication technology should be publicly available or whether the frequency band should be reserved for the mobile communication technology. Some frequency bands, such as the ISM\footnote{ISM = Industrial, Scientific and Medical}-band around 2.4~GHz, are (mostly) unregulated, \ie a license is not required to operate devices in this band, as long as the devices satisfy requirements, \eg on the transmission power, to minimise the interference. The disadvantage of the ISM-band (and similar bands) is that, because they are unlicensed, many different technologies will use the bands. For instance, the ISM-band is used for WiFi, Bluetooth, cordless telephones (especially in the US), baby alarms, etc. If a new mobile communication technology were designed to use the ISM-band or a similar unlicensed band, the subscribers would experience interference from the other technologies, which would result in a lower capacity for data communication.
+
+For these reasons, mobile communication technologies use different reserved frequency bands to avoid interference. Different parts of the frequency spectrum are reserved for mobile communication technologies worldwide, and in each country, a public authority is responsible for assigning parts of these frequency bands to different operators, which in turn pay a license to operate in a given frequency band, \ie to use the frequency band to provide mobile services to their subscribers without the risk of interference from other operators or technologies.
+
+However, extensions to the LTE specifications, such as LTE-U, describe how unlicensed frequency bands, typically frequency bands around 5~GHz that are already used for WiFi, can also be used for LTE. This enhances the capacity of LTE in smaller areas, by ''off-loading'' traffic from the standardised (licensed) frequency bands to the 5~GHz band, but the use of the 5~GHz band for LTE traffic (as well as WiFi traffic) may cause interference between LTE-users and WiFi-users, causing service degradation for both. Furthermore, both the mobile phones and the base stations must support this additional frequency band.
+
+\subsection{LTE}
+In Denmark, LTE (except for LTE-U) typically utilise different parts of the frequency spectrum around 800~MHz, 1800~MHz or 2600~MHz. The width of a frequency channel varies depending on the need for capacity since the available capacity is proportional to the width of the frequency channel. In urban areas where the need for capacity is highest, the width of a frequency channel is often 20~MHz, whereas, in rural areas, the width of the frequency channel can be smaller. In later revisions of the LTE specifications, channel widths of 40~MHz, 80~MHz and 160~MHz have also been standardised.
+
+\subsection{5G}
+In 5G networks, the possible frequency ranges have been divided into Frequency Range 1 (FR1), which covers the lower part of the spectrum up to approximately 7~GHz, and Frequency Range 2 (FR2), which covers from approximately 24~GHz and above. Initially, 5G is in Denmark intended to use frequency bands around 700~MHz, 3.5~GHz, and 26~GHz. Later, frequency bands around 40~GHz and 66~GHz are also expected to be used for 5G.
+
+Furthermore, as the network operators discontinue older technologies, the frequency bands allocated for these may sometimes be reassigned to 5G. In Denmark, operators are expecting to discontinue their 3G networks in 2022\footnote{2G is expected to outlive 3G in Denmark, but with reduced capacity mainly for embedded applications.}, so frequency bands allocated for 3G may (depending on the licensing terms) be reassigned to 5G.
+
+\section{Multiplexing on the radio interface}
+This section describes the different multiplexing methods used in the different generations of mobile communication networks to divide the capacity of a cell among the mobile phones in the cell. In general, the different mobile communication network generations have used a combination of some of the four multiplexing principles illustrated in Figure~\ref{fig:tdma_fdma_cdma_ofdma}.
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t][][b]{.21\textwidth}
+\centering
+\scalebox{0.7}{\includegraphics{multipleaccess_tdma}}
+\caption{TDMA}
+\end{subfigure}\hspace{3cm}
+\begin{subfigure}[t][][b]{.21\textwidth}
+\centering
+\scalebox{0.7}{\includegraphics{multipleaccess_fdma}}
+\caption{FDMA}
+\end{subfigure}
+
+\vspace{.5cm}
+\begin{subfigure}[t][][b]{.24\textwidth}
+\centering
+\scalebox{0.7}{\includegraphics{multipleaccess_cdma}}
+\caption{CDMA}
+\end{subfigure}\hspace{3cm}
+\begin{subfigure}[t][][b]{.21\textwidth}
+\centering
+\scalebox{0.7}{\includegraphics{multipleaccess_ofdma}}
+\caption{OFDMA}
+\end{subfigure}
+\caption{\label{fig:tdma_fdma_cdma_ofdma}Illustration of TDMA, FDMA, CDMA, and OFDMA for users A - D.}
+\end{figure}
+\begin{itemize}
+\item \textbf{Time Division Multiple Access} (TDMA) -- In TDMA, the entire frequency band/channel that has been allocated to a cell will be used for transmissions, but a mobile phone will only send and receive for a part of the time in the assigned \emph{timeslots}. In the downlink direction, the base station will transmit continuously using a frame structure, where information to one mobile phone will be placed in the same timeslot in all frames. In the uplink direction, the mobile phones in the cell take turns transmitting. To avoid that the transmissions from different mobile phones overlap, causing interference between the transmissions that will introduce errors, a small interval, called a \emph{gap}, is used between transmissions, \ie one transmission ends shortly before the next transmission starts.
+%
+\item \textbf{Frequency Division Multiple Access} (FDMA) -- In FDMA, the cell's frequency band is divided into some (smaller) frequency channels. One channel will be assigned to one mobile phone for the duration of a call. In the downlink direction, the base station transmits on all frequency channels at the same time, but one mobile phone will only listen to one of these channels. Each mobile phone transmits all the time in the uplink direction, but only in the assigned frequency channel. Usually, \emph{guard bands} are used between the different frequency channels to avoid the transmissions in one frequency channel overlapping with the neighbour frequency channels.
+%
+\item \textbf{Code Division Multiple Access} (CDMA) -- In CDMA, different transmissions are separated by using different (unique) codes. In the downlink direction, the base station transmits the ''sum'' of all the coded transmissions to all the mobile phones in the cell, \ie transmits simultaneously to all mobile phones in the cell. Every mobile phone can ''extract'' its part of the transmission by applying the relevant code to the received signal. In the uplink direction, each mobile phone will encode its information with its unique code and transmit it at the same time (and on the same frequency band) as every other mobile phone. Even though the base station receives all the transmissions at the same time, it can separate the transmissions from each mobile phone, since it knows which codes have been used by different mobile phones.
+%
+\item \textbf{Orthogonal Frequency Division Multiple Access} (OFDMA) -- OFDMA can (informally) be viewed as a very efficient combination of FDMA and TDMA. OFDMA is used in both LTE and 5G NR and is described in section~\ref{sec:ofdma}.
+%In OFDMA, the frequency band of the cell is divided into a (large) number of small frequency channels called \emph{subcarriers}, and the transmissions in each subcarrier furthermore use \emph{orthogonal} signals, so a transmission in one subcarrier does not cause interference in the other subcarriers. Therefore, there is no need for guard bands between subcarriers so that the entire frequency band can be used for transmissions. When a mobile phone has information to send, it will be allowed to send on a number of these subcarriers for some time units. The combination of many small frequency channels and short time units makes it possible for the network to allocate capacity to a mobile phone that closely matches the mobile phone's requirements. Therefore, the total capacity of a cell can be adapted to the mobile phones' precise needs so that the capacity can be utilised more effectively than with the other multiplexing principles.
+%
+\end{itemize}
+
+\subsection{OFDMA multiplexing in LTE}\label{sec:ltemux}\label{sec:ofdma}
+To achieve higher bit rates in LTE than previous generations, LTE must be able to use the frequency channel more effectively. For this reason, the \emph{Orthogonal Frequency Division Multiple Access} (OFDMA) principle is used in the downlink direction. OFDMA can be seen as a multi-user variant of OFDM. In the uplink direction, the \emph{Single-Carrier Frequency Division Multiple Access} (SC-FDMA) principle is used, which is similar to OFDMA in many respects, so only OFDMA will be discussed here.
+
+The principle of OFDM is that the frequency channel is divided into an (often large) number of small frequency (sub-)channels, called \emph{subcarriers}. Traditional FDM systems require \emph{guard bands} between the frequency channels to avoid interference between neighbour frequency channels, but in OFDM, the transmissions on different subcarriers use orthogonal signals so that the transmissions in one subcarrier will not interfere with the transmissions in the neighbour subcarriers. This means that guard bands are not needed in OFDM so that the individual subcarriers can be placed directly adjacent to each other in the frequency band, which is therefore utilised efficiently.
+
+In traditional OFDM systems, the total capacity is shared among the subscribers by scheduling the transmissions from different subscribers at different times. When one subscriber transmits, the transmissions will occur on all subcarriers in the relevant time interval.
+
+In OFDMA, the UEs share the capacity of a cell by dividing the total number of subcarriers into smaller groups of subcarriers, and one UE would then receive information on one or more of these groups for a certain period of time. An example of this is illustrated in Figure~\ref{fig:lte_ofdma} for a simple system with only 48 subcarriers\footnote{Real OFDMA systems uses many more subcarriers. An LTE-cell that uses a frequency channel of 20~MHz will have approximately 1200 subcarriers.}, where the transmissions to the individual UEs are marked with different colours. Initially, only UE1 and UE2 are receiving information. UE1 (in blue) receives information on subcarriers in both ends of the frequency channel, while UE2 (in green) receives information on the middle subcarriers. After a period of 1~ms, called 1~\emph{subframe}, the lower subcarriers are now allocated for transmission to UE3 (in yellow), whereas UE1 is now receiving information on a contiguous block of subcarriers in the upper part of the frequency channel. After an additional subframe, the network has less information to transmit, so only UE2 and UE3 are receiving in this subframe, while some subcarriers are ''empty''.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=0.88]{lte_ofdma}
+\caption{\label{fig:lte_ofdma}OFDMA principle in LTE.}
+\end{figure}
+
+At the start of every subframe, all subcarriers are used for control information (signalling). In Figure~\ref{fig:lte_ofdma}, it is illustrated that control information uses one OFDM symbol (one small square) on every subcarrier in every subframe, but more OFDMA-symbols can be used if the network has to send more signalling information. This control information is used, e.g., for general information intended for every UE in a cell; both UEs that only are ''camped-on'' the cell, but also the UEs that are currently exchanging user information with the network. Examples of this control information are:
+\begin{itemize}
+\item The identity of the network operator using the combined values of the \emph{Mobile Country Code} (MCC) (which specifies a country) and the \emph{Mobile Network Code} (MNC) (which specifies a particular operator within this country).
+%
+\item Which tracking area the cell belongs to
+%
+\item A list of neighbouring cells. As described earlier in the handover procedure, a UE is required to periodically measure the radio quality in the current and neighbouring cells and transmit these measurements to the network, so the network can decide if a handover is required. For this reason, a UE must know about possible neighbouring cells.
+%
+\end{itemize}
+
+The control information can also contain information for just one UE, e.g., a paging message for a particular UE, because the network has information waiting to be transmitted to this UE.
+
+In LTE, capacity is always allocated in the form of an integer number of \emph{Resource Blocks} (RBs), where 1 RB is 12 consecutive subcarriers for a period of 1~ms. This means that in Figure~\ref{fig:lte_ofdma}, UE1 and UE2 are both assigned 2 RBs in the first subframe. In the second subframe, UE1 and UE3 are each assigned 2 RBs, and so on.
+
+Furthermore, Figure~\ref{fig:lte_ofdma} includes the so-called reference signals, which are information transmitted on fixed subcarriers at fixed points in time. A UE uses these reference signals to ''tune in'' on a specific cell because different cells transmit different information in these reference signals.
+
+When the eNodeB decides which subcarriers are used to transmit to the individual mobile phones, the current radio conditions are included in the decision. If the eNodeB knows that a specific mobile phone experiences many errors on some subcarriers but fewer errors on other subcarriers, it will attempt to use only the ''good'' subcarriers for transmissions to that mobile phone.
+
+In the uplink direction, LTE uses the SC-FDMA principle mentioned earlier. In Figure~\ref{fig:lte_ofdma} (\ie in the downlink direction), a mobile phone can receive information simultaneously on non-contiguous parts of the frequency channel, but with the use of SC-FDMA in the uplink direction, a mobile phone can only transmit on a contiguous block of subcarriers. This makes the radio transmitter of the mobile phone simpler and reduces energy consumption.
+
+\subsection{Multiplexing in 5G}
+One radio interface in 5G, called 5G New Radio (5G NR), is also based on the OFDMA principle, i.e., by dividing a frequency channel into a (large) number of subcarriers and assign one or more blocks of subcarriers in a period of time for the transmission to and from a UE. However, to increase the flexibility in 5G, there are some differences.
+\begin{itemize}
+%
+\item A subcarrier in LTE is always 15~kHz, whereas subcarriers in 5G NR can be  15~kHz, 30~kHz, 60~kHz, or 120~kHz, depending on the frequency range. Using wider subcarriers means that the duration of the radio symbols can be shortened, so that the latency on the radio link can be reduced.
+%
+\item In LTE, capacity is assigned in the form of Resource Blocks, which is 12 subcarriers in one subframe (1~ms). 5G can assign capacity in smaller time intervals, e.g., 500~$\mu{}\textrm{s}$, 250~$\mu{}\textrm{s}$, or 125~$\mu{}\textrm{s}$, so less capacity is wasted if an entire RB (corresponding to a time interval of 1~ms) is not needed.
+%
+\item To support URLLC traffic that requires very low latency, it is also possible to ''interrupt'' a standard transmission to insert URLLC-data in the middle of a subframe.
+%
+\end{itemize}
+
+
+\section{Radio transmission issues}\label{chap:radio}
+The ''quality'' of the radio link between the subscriber's mobile phone/terminal, the UE, and the base station is one of the key factors that affect how much information (and with what latency) the user can exchange with the network and thereby with services on the Internet. In this section, some of the physical phenomena that affect radio transmission are described.
+
+\subsection{\emph{Path loss} and \emph{shadow fading}}\label{sec:pathloss}
+Figure~\ref{fig:pathloss_scenario} illustrates a cell in a mobile communication network with a base station in the centre of the cell. In this case, the base station uses an \emph{omnidirectional} antenna, which means that the radio signals propagate in all directions from the antenna with the same power. However, the signal becomes more and more attenuated as the distance to the base station increases. This effect is here called \emph{path loss}.
+
+\begin{figure}[htbp]
+\centering
+\scalebox{0.7}{\includegraphics{pathloss_scenario}}
+\caption{\label{fig:pathloss_scenario}Attenuation of radio signals in a cell.}
+\end{figure}
+
+A simple model of the path loss is that the attenuation of a received radio signal is proportional to the square of the distance, \ie
+\[
+S_{received}\propto{}D^{-2}
+\]
+
+However, the antenna of the base station is located close to the ground (compared to the distance to the mobile phone), so a part of the signal from the base station's antenna is absorbed by the ground. Hence, an empirical model of the attenuation that includes absorption is that attenuation is proportional to the 4th power of the distance, \ie
+\[
+S_{received}\propto{}D^{-4}
+\]
+
+Figure~\ref{fig:pathloss} illustrates the power of a received signal as a function of the distance between the base station and the mobile phone. If the distance becomes too large, the mobile phone will not receive a sufficiently strong signal. The \emph{receiver sensitivity} of a mobile phone describes the minimum required signal strength that permits the mobile phone to decode the received signal with an acceptable low bit error rate. This is indicated in Figure~\ref{fig:pathloss}, where the sensitivity of the mobile phone effectively determines the maximum distance between the mobile phone and the base station.
+
+\begin{figure}
+\centering
+\scalebox{0.7}{\includegraphics{pathloss}}
+\caption{\label{fig:pathloss}Path loss.}
+\end{figure}
+
+Another effect that influences a received signal's strength is that objects such as buildings, hills, forests, and so on, can also absorb some of the radio signals. This is called \emph{shadow fading} because the mobile phone can be in the ''shadow'' of such objects. Figure~\ref{fig:shadowfading} illustrates that the received signal power as a function of the distance to the base station can fluctuate due to shadow fading compared to the ''pure'' path loss curve.
+\begin{figure}
+\centering
+\scalebox{0.7}{\includegraphics{shadowfading}}
+\caption{\label{fig:shadowfading}Path loss and shadow fading.}
+\end{figure}
+
+Shadow fading can cause the maximum distance between the mobile phone and the base station to be reduced, as illustrated in Figure~\ref{fig:shadowfading}, where the dotted curve represents path loss alone and the solid curve represents the combined effect of path loss and shadow fading. If the mobile phone is in the ''shade'' of an object, it may be better to move away from the base station if it means that there will be fewer obstacles between the mobile phone and the base station. This is also illustrated in Figure~\ref{fig:shadowfading} where the mobile phone will receive a stronger signal by moving from $D_1$ to $D_2$, even though the distance to the base station increases.
+
+\subsection{Multipath fading}
+Another problem that affects the quality of the radio link (even close to the base station) is called \emph{multipath fading}. The fundamental problem is that the mobile phone can receive several ''parts'' of a transmitted signal. One part of the transmitted signal propagate directly from the transmitting base station's antenna to the mobile phone, while other parts are \emph{reflected} by buildings or other objects, so these are received  slightly later than the direct signal, as illustrated in Figure~\ref{fig:rayleigh_scenario}.
+
+\begin{figure}[htbp]
+\centering
+\scalebox{0.7}{\includegraphics{rayleigh_scenario}}
+\captionsetup{format=hang,margin=2cm}
+\caption[Multipath fading scenario with multiple signal paths from the base station \ldots]{\label{fig:rayleigh_scenario}Multipath fading scenario with multiple signal paths from the base station to the mobile phone.}
+\end{figure}
+
+In the mobile phone, the different received signals will be added, but since the reflected signals are slightly delayed compared to the direct signal, there will be a phase difference between the different signals. If the phase difference is close to a multiple of $2\cdot{}\pi$, then a reflected signal will be in-phase with the direct signal, so the resulting signal will be stronger than the direct signal alone. However, if the phase difference is close to $(2n+1)\cdot{}\pi$ (where $n\in\mathbb{N}_0$), then a reflected signal will be out-of-phase with the direct signal, and the sum will be less than the direct version. This phenomenon is similar to constructive and destructive interference between waves. A serious problem with multipath fading is that it is generally unpredictable. Even a small change in the location of the mobile phone can change the conditions significantly, \ie go from a situation with constructive interference, where the reflected versions ''boosts'' the direct version, to destructive interference where the reflected versions ''cancels out'' some of the direct version.
+
+Figure~\ref{fig:rayleighfading} illustrates the effect of multipath fading, and if the ''smooth'' curve\footnote{The smooth curve represents the path loss and Shadow Fading, as in Figure~\ref{fig:shadowfading}.} is examined in detail, it can be observed that the total received signal strength can vary drastically, even with small changes in the distance.
+
+\begin{figure}[htbp]
+\centering
+\scalebox{0.7}{\includegraphics{rayleighfading}}
+\caption{\label{fig:rayleighfading}Effect of multipath fading.}
+\end{figure}
+
+If a mobile phone is close to the base station, the attenuation due to path loss and any shadow fading will be low, so usually, there should be a significant margin between the strength of the received signal and the sensitivity of the mobile phone. However, the effect of multipath fading may cause a narrow ''dip'' in the received signal strength, causing the received signal strength to drop below the mobile phone's sensitivity, but if the subscriber moves even just a few meters, radio conditions may be excellent again.
+
+\subsection{MIMO}
+However, multipath fading can be exploited to increase the throughput between the mobile and the base station using a principle called Multiple-In-Multiple-Out (MIMO).
+
+A simple example of a MIMO-system is illustrated in Figure~\ref{fig:mimo}, where both the mobile and the base station are equipped with \emph{two} antennas, so this configuration is called 2x2-MIMO. If multipath fading is present, a transmission from one of the antennas of the base station may experience constructive interference on one of the mobile's antennas, but destructive interference on the other, while a transmission from the base station's other antenna may experience the opposite conditions.
+
+Figure~\ref{fig:mimo} illustrates a simple scenario where transmissions from the upper antenna of the base station are received strongly on the upper antenna of the UE and vice-versa, but it may also occur that the transmissions from the upper antenna of the base station are received strongly on the lower antenna of the UE and vice-versa.
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}{\textwidth}
+\centering
+\scalebox{0.7}{\includegraphics{mimo2a}}
+\subcaption{Transmissions from the base station's upper antenna.}
+\end{subfigure}\vspace{\baselineskip}
+\begin{subfigure}{\textwidth}
+\centering
+\scalebox{0.7}{\includegraphics{mimo2b}}
+\subcaption{Transmissions from the base station's lower antenna.}
+\end{subfigure}\vspace{\baselineskip}
+\caption{\label{fig:mimo}Multiple-In-Multiple-Out.}
+\end{figure}
+
+In this case, the base station may transmit \emph{two} independent information sequences in parallel to the UE, each transmitted by one of the base station's antennas, and the result will be a higher throughput, as illustrated in Figure~\ref{fig:mimo2}, compared to a situation where just one information sequence was sent using one antenna.
+
+\begin{figure}[htbp]
+\centering
+\scalebox{0.7}{\includegraphics{mimo2c}}
+\caption{\label{fig:mimo2}Transmissions of independent information flows in parallel in 2x2 MIMO.}
+\end{figure}
+
+In reality, it is seldom the case that transmissions from one of the base station's antennas are received on only one of the UE's antennas (because there is ''perfect'' destructive interference on all other UE-antennas), but the MIMO principle can still be useful.
+
+Another application of the MIMO-principle is if the base station transmits the same information on both antennas. In this case, the UE can combine the received signals from its antennas to receive a more robust signal resulting in a lower error probability, or alternatively, that the UE may be further from the base station.
+
+LTE (and 5G) also use other variants of the MIMO-principle, including variants with more than two antennas on the base station and UE, \eg 4x4-MIMO, 8x8-MIMO, but these will not be discussed here.
+
+\subsection{Timing advance}\label{sec:timing_advance}
+Another problem that LTE (and 5G) must handle is related to uplink transmissions from different UEs. Remember (c.f.,~Figure~\ref{fig:lte_ofdma}) that capacity in LTE is allocated in the form of Resource Blocks (RBs), so if a UE is assigned a RB, the UE will be permitted to transmit on a subset of the subcarriers in specific subframes.
+
+Assume that two UEs have been assigned capacity for uplink transmissions in the form of subcarriers and subframes as illustrated in Figure~\ref{fig:lte_ta1}.
+\begin{figure}[htbp]
+\centering
+\scalebox{0.8}{\includegraphics{lte_ta1}}
+\caption{\label{fig:lte_ta1}Allocation of subcarriers and subframes to two UEs.}
+\end{figure}
+
+If UE1 moves away from the base station, the distance to the base station increases, resulting in an increased propagation delay on the transmissions from the UE to the base station. This means that the transmissions from UE1 arrive later and later at the base station, as illustrated in Figure~\ref{fig:lte_ta2}.
+\begin{figure}[htbp]
+	\centering
+	\scalebox{0.8}{\includegraphics{lte_ta2}}
+	\caption{\label{fig:lte_ta2}Transmissions from UEs seen from the base station's point-of-view.}
+\end{figure}
+
+If UE1 continues to move away from the base station, the transmissions from UE1 will eventually ''overlap'' with the transmissions from UE2 in the subsequent subframe (similar to a collision in traditional Ethernet LANs), resulting in the loss of information, as illustrated in Figure~\ref{fig:lte_ta3}.
+\begin{figure}[htbp]
+	\centering
+	\scalebox{0.8}{\includegraphics{lte_ta3}}
+	\caption{\label{fig:lte_ta3}Overlap between transmissions from two UEs.}
+\end{figure}
+
+For this reason, the base station will continuously attempt to ensure that the transmissions from the individual UEs are received by the base station within the assigned subframes. However, the UEs are generally unaware of their distance to the base station, so they only know about the start of subframes based on the downlink transmissions (which also has a propagation delay) from the base station.
+
+As an example, an UE is located 300 m from the base station, so the propagation delay ($t_{prop}$) will approximately be:
+\[
+t_{prop} = \frac{300\textrm{ m}}{3\cdot{}10^8\textrm{ m/s}} = 1\,\mu\textrm{s}
+\]
+
+If a subframe at the base station starts at $t = t_0$, the UE will not register the start until $t = t_0 + t_{prop}$, and if the UE starts transmitting at this point (\ie at the point that it believes is the start of the subframe), the beginning of the UE's transmission will reach the base station at time $t = t_0 + 2\cdot{}t_{prop}$.
+
+This means that if the base station must receive the start of a UE's transmission at the beginning of a subframe at the base station, the UE must start its transmission $2\cdot{}t_{prop}$ seconds before it receives the same subframe.
+
+For this reason, each UE stores a \emph{timing advance} value that tells the UE how much earlier (compared to the desired start of the subframe) it must start transmitting. Since the UE may be moving inside a cell so that the distance (and thereby the propagation delay) changes, the base station can send signalling messages to a UE that causes the UE to increase or decrease its timing advance value. If the UE is moving closer to the base station, the timing advance value should be reduced, and similarly, the timing advance value should be increased if the UE is moving away from the base station.
+
+The situation in Figure~\ref{fig:lte_ta3} can therefore be avoided. If the base station in Figure~\ref{fig:lte_ta2} detects that the transmissions from UE1 are in danger of overlapping with the transmissions from UE2, the base station will instruct UE to increase its timing advance value as illustrated in Figure~\ref{fig:lte_ta4}.
+\begin{figure}[htbp]
+	\centering
+	\scalebox{0.8}{\includegraphics{lte_ta4}}
+	\caption{\label{fig:lte_ta4}Adjusting the timing advance value of an UE.}
+\end{figure}
+ 

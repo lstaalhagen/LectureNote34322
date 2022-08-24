@@ -1,0 +1,155 @@
+% !TeX spellcheck = en_GB
+\clearpage
+\chapter{Services in mobile communication networks}
+\label{sec:telenet_services}
+
+\section{Early mobile networks}
+The use of mobile services in Denmark started more than 30 years ago when the \emph{Nordic Mobile Telephone} (NMT) system was deployed in (primarily) the Nordic countries. The NMT system was specified by the Nordic public regulatory bodies, and since the specifications were public, many manufacturers could produce both network equipment and mobile phones, which resulted in lower prices for both operators and subscribers.
+
+Earlier systems for ''mobile'' communication have existed, but only as manual systems (''car phones'') that were expensive and far less flexible compared to NMT and later generations. In the earlier systems, the subscriber's equipment was large and heavy and had to be permanently installed in a car. When a subscriber wished to make a call, he would call an operator, who would connect the call to a fixed-line subscriber. These systems supported only limited mobility, so a call would be abruptly terminated if the subscriber moved too far from the initial location.
+
+NMT was an analog system intended for (mainly) telephony, where voice signals directly modulated the radio signal (compared to a digital system where the voice signal is first digitised, and the resulting bits are then used to  modulate the radio signal). Since NMT (and similar systems in other parts of the world) were the first real mobile communication networks, they are usually classified as 1\textsuperscript{st} generation (1G) systems. The popularity of NMT (and similar 1G systems elsewhere) subsequently resulted in a demand for advanced mobile communication systems with a higher capacity and more capabilities. In Europe, this was the GSM mobile network technology, which was introduced in the 1990s. The number of NMT-subscribers declined after the introduction of GSM, so the NMT system was discontinued in 2002 in Denmark.
+
+\section{\texorpdfstring{GSM - 2nd generation mobile communication technology}{GSM - 2nd generation mobile communication technology}}
+GSM is an improvement to NMT (and other 1G technologies in Europe), and the GSM standardisation started in 1982 when ETSI\footnote{ETSI = European Telecommunications Standards Institute, which is a non-profit organisation that develops and issues standards for the telecommunication sector. The members of ETSI are operators, national regulatory bodies, manufacturers, and similar.} established the \emph{Groupe Special\'{e} Mobile} work group to develop a new mobile communication technology. The acronym GSM originated as the work group's initials, but as the technology was also deployed outside Europe, GSM was later redefined to be an abbreviation of \emph{Global System for Mobile communication}.
+
+GSM was first deployed in 1991 in Finland, and even if newer generations of mobile communication technologies are available today, GSM is still one of the most common mobile communication technologies.
+
+A fundamental difference between GSM and previous 1G systems is that GSM is a digital system, \ie the analog information, such as speech, is digitised (translated into 0s and 1s) before the transmission on the radio interface. The advantages of this approach includes:
+\begin{itemize}
+%
+\item GSM can utilise the capacity of the (wireless) radio media better, since digitised speech can be compressed before transmission, so that a GSM network can transfer more calls using the same radio resources compared to a 1G network.
+%
+\item Using GSM for data communication  (\ie Internet traffic) is easier since the information is already on digital form. In NMT, the bits had to be converted into tones (using an analog modem) before they could be transmitted on the radio interface.
+%
+\end{itemize}
+
+Furthermore, GSM is currently used in more countries than NMT ever was, so GSM subscribers can roam (use another operator's network) in more countries.
+
+\subsection{Voice services}\label{sec:voice_services}\label{sec:gsm_voice_services}
+Since the radio spectrum that is allocated for mobile communication is a scarce resource, it is important to utilise the radio spectrum as efficiently as possible. Hence, GSM uses a more effective way to represent a voice signal than the traditional 64~kbps digital signal used in the fixed-line telephone network. When a 64~kbps (digitised) voice signal is generated, the encoder does not utilise any correlation between nearby samples, \ie that the value of a sample is normally close to previous/subsequent samples. This correlation permits a digitised voice signal to be compressed, resulting in lower bit rate less than 64~kbps.
+
+Figure~\ref{fig:gsm_voicecoding} illustrates the original voice coding in GSM. The analog voice signal is first digitised with a sampling rate of 8000~samples/s and quantisation of 8~bits/sample, resulting in a 64~kbps digital signal, just as in the fixed-line telephone network. The 64~kbps digital signal is then compressed by a \emph{speech encoder}, which processes the digital signal in blocks of 160~samples so one block corresponds to 20~ms of the voice signal. For each block of 160~samples (160 samples $\cdot$ 8 bits/sample = 1280 bits), the voice encoder outputs a block of 260~bits so the voice encoder ''removes'' approximately 80~\% of the bits. The 260~bit block can be considered as ''summary'' of the samples in the original 20~ms block, and the bit rate (after encoding) of a voice signal in GSM is $R_{encoder}={260\textrm{ bits}}/{20\textrm{ ms}}=13\textrm{ kbps}$.
+
+\begin{figure}[htbp]
+\centering
+\scalebox{0.7}{\includegraphics{gsm_voicecoding}}
+\caption{\label{fig:gsm_voicecoding}Full Rate (FR) speech coding in GSM.}
+\end{figure}
+
+This voice coding is called \emph{Full Rate} coding and was part of GSM from the start. An improved compression algorithm (\emph{Enhanced Full Rate} (EFR) coding) was later specified, which has an improved audio quality. This algorithm generates 244~bits for every block of 20~ms voice signal, corresponding to a (compressed) bit rate of 12.2~kbps. \emph{Half Rate} (HR) coding, where voice signals are compressed to only 6.5~kbps digital signals, can be used to increase the capacity (number of simultaneous voice calls) at the expense of lower voice quality.
+
+\subsection{Data communication services}
+GSM can also be used for data communication applications, but only by using circuit-switched connections, which are not ideal for data communication (such as for Internet traffic) where the traffic is normally bursty. The bit rate was initially 9600~bps but later improved to 14400~bps. The later \emph{High Speed Circuit Switched Data} (HSCSD), used up to four circuit-switched connections in parallel, resulting in a bit rate of up to 57600~bps. Another drawback from the users' point-of-view was that a subscriber would be charged based on the duration of the circuit-switched connection and not on the amount of data transferred.
+
+\subsection{Messaging}
+\emph{Short Message Service} (SMS), which permits a subscriber to send short text messages (up to 160 characters) to other subscribers, has been another popular service. The SMS service was later enhanced with the \emph{Multimedia Messaging Service} (MMS) to permit subscribers to send images, videos, or similar. In MMS, a subscriber initially just receives a specially formatted SMS that contains a link to the actual contents (image, video, or similar) on the operator's MMS server. An MMS-capable mobile phone automatically decodes the SMS to retrieve the link and download the contents from the operator's MMS-server. Otherwise, the subscriber can simply enter the link into an ordinary browser to view the contents.
+
+\subsection{Supplementary services}
+Similar to the fixed-line telephone network, a GSM network can also offer supplementary services, especially \emph{Location Based Services}. The idea behind these supplementary services is that the network knows a subscriber's approximate location, so that different services may be offered in different locations. Examples include the possibility to find the nearest ATM, or the ability to define a so-called ''home zone'' where calls could be made cheaper than elsewhere. Another supplementary service is the use of prepaid cards where a person purchases a temporary subscription with a certain prepaid amount, and as the person uses his mobile phone, the amount in the account is reduced accordingly.
+
+\section{GPRS/EDGE -- 2.5th and 2.75th generation mobile communication technology}
+The popularity of laptop computers in the 1990s resulted in an increased demand for Internet access ''on-the-road''. However, GSM only offers fixed bit rate circuit-switched connections with charging based on the duration of the circuit-switched connection instead of the amount of information transferred. Native support for packet-switched communication (for better utilisation of network resources due to stochastic multiplexing) and charging based on the amount of data transferred would be preferable for the subscribers.
+
+\subsection{Data communication services}
+To permit packet-switched mobile communication, GSM was extended with \emph{General Packet Radio Service} (GPRS), that permits the subscribers to be online continuously (''always online'') and be charged for the amount of information transferred. Using GPRS, the subscribers can send and receive IP-packets with a maximum bit rate of (in theory) about 160~kbps and a typical bit rate in the order of 30-50~kbps. Introducing GPRS in a GSM mobile communication network requires modifications and new network devices in both the access part and the core part, and in addition, the subscribers' mobile phones must naturally also support GPRS.
+
+A subsequent enhancement is \emph{Enhanced Data rates for GSM Evolution} (EDGE) where radio transmissions use another type of modulation that can transfer more bits per second as long as the radio signal is sufficiently strong. The typical capacity in EDGE can be around 100~kbps. Introducing EDGE requires additional modifications to the access part of the mobile communication network and must be supported by the subscribers' mobile phones.
+
+\section{UMTS -- 3rd generation mobile communication technology}
+The european 3\textsuperscript{rd} generation mobile communication technology is called \emph{Universal Mobil Telephone System} (UMTS). UMTS supported both circuit-switched and packet-switched services from the start and also offered higher capacity to permit newer applications such as video telephony. Two types of \emph{physical} channels are supported on the radio interface in UMTS.
+\begin{itemize}
+%
+\item \emph{Dedicated} physical channels that offers a guaranteed capacity of up to 384~kbps in the downlink\footnote{The \emph{downlink} direction is from the network to the mobile terminal, while the opposite direction is called the \emph{uplink} direction} direction and with an uplink capacity of typically 64~kbps or 128~kbps. A dedicated physical channel is used for applications that require Quality-of-Service (QoS) guarantees, such as speech or video communication, but also data communication services that require a minimum capacity.
+%
+\item \emph{Shared} physical channels, where the mobile phones in an area share the same physical channel, so the network is not able to guarantee a minimum capacity or a maximum latency in this case. Shared physical channels are only used to transfer smaller amounts of information, such as text messages (SMS) and (simple) web surfing.
+%
+\end{itemize}
+
+When a subscriber wants to send/receive data, a \emph{logical} channel between the subscriber's terminal and the network is established. The contents of a logical channel is transferred on the radio interface on either a dedicated or a shared \emph{physical} channel and the mapping between a logical channel and a physical channel can change over time. When a user wishes to ''browse the Internet'' to retrieve a large web page, a logical channel is established between the subscriber's terminal and the network. Initially, the contents of the logical channel may be transferred in a shared physical channel, but if the network detects that a significant amount of information is transferred, the network can establish a (high capacity) dedicated physical channel and switch the logical channel to the dedicated physical channel. When the web page has been transferred and the network detects that there is currently no information transmitted in the logical channel, the logical channel can switch back to use a shared physical channel and the previous dedicated physical channel can then be terminated and the allocated resources can be reused by other subscribers in the area.
+
+\subsection{Voice services}
+Compared to GSM, UMTS uses a more advanced speech codec, called \emph{Adaptive Multirate Codec} (AMC), where coding can be changed dynamically (every 20~ms) to adapt to the radio link quality. On a ''good'' radio link with relatively few bit errors, more bits can be used for the coded speech for a improved voice quality. AMC can also adapt the bit rate (and thereby the voice quality) to the number of active users in an area, so that the bit rate may be reduced if the network must handle more voice calls.
+
+
+\subsection{Data communication services}
+UMTS offers (logical) channels for data communication services with different capacities from a few kbps and up to 384~kbps in the downlink direction, and up to 128~kbps in the uplink direction. However, the highest bit rates are only available if the contents of a logical channel is transferred in a dedicated physical channel as described earlier.
+
+\subsection{Messaging and supplementary services}
+Generally the same as in GSM.
+
+\section{HSPA -- 3.5th / 3.75th generation mobile communication technology}
+UMTS initially offered a downlink capacity of 384~kbps for data communication services, which was a significant improvement compared to GPRS and EDGE, but the increased demand for mobile Internet traffic resulted in an increased demand for capacity, so the \emph{High Speed Packet Access} (HSPA) extensions (HSDPA in the downlink direction and HSUPA in the uplink direction) were introduced in UMTS.
+
+% \subsection{HSDPA}
+\emph{High Speed Downlink Packet Access} (HSDPA) increases the downlink capacity, which is an advantage for traditional applications such as web browsing, where subscribers usually download (much) more information than they upload. Initially, the maximum capacity in the downlink direction was 14~Mbps, but later revisions of HSDPA has increased the capacity on a good radio link to more than 100~Mbps. The available capacity also depends on the subscriber's mobile phones -- not all phones are capable of receiving information with the highest bit rates. Finally, the HSDPA-capacity is shared among the subscribers in an area so if many subscribers retrieve information at the same time, the (HSDPA-)capacity will be shared among these.
+
+% \subsection{HSUPA}
+The increased downlink capacity in HSDPA was an advantage for applications with an asymmetrical demand for capacity, such as web browsing, but other applications such as video telephony require (approximately) the same capacity in the uplink and downlink direction, so \emph{High Speed Uplink Packet Access} (HSUPA) was introduced into UMTS to increase the uplink capacity from a maximum of 128~kbps to (in theory) 6~Mbps. Similar to HSDPA, the uplink capacity is shared among the HSUPA-subscribers.
+
+\section{LTE -- 3.9th / 4th generation mobile communication technology}\label{sec:lte}
+The mobile communication technology that succeeded UMTS(+HSPA) is informally called \emph{Long Term Evolution} (LTE), which provides higher bit rates compared to previous generations. The (initial) maximum capacity in the downlink direction is 300~Mbps with 75~Mbps in the uplink direction, and  the latency\footnote{For instance from the time that some IP packet is generated inside a terminal and until the packet is sent out on the Internet from the operator's network.} is also reduced compared to previous generations.
+
+LTE also represents a trend towards packet-switched communication for all types of information and applications. Whereas 2G and 3G technologies natively supports circuit-switched connections, LTE supports only packet-switched communication, so circuit-switched connections (e.g., for voice calls) are not supported by LTE. So in initial LTE-deployments, when a subscriber wished to make a voice call, the mobile phone would switch to a 2G/3G network for the duration of the (voice) call. This solution is called \emph{CS-fallback} since the mobile phone ''falls back'' to an earlier generation mobile network to use a circuit-switched (CS) connection. The long-term solution is to use packet-switched communication for voice applications as well, similar to Voice-over-IP (VoIP) in the Internet but optimised for LTE, which is called Voice-over-LTE (VoLTE). To use VoLTE, both the operator's network and the subscribers mobile phone must support it, so in a transition phase, some users may voice services via VoLTE, whereas other users will fall back to a 2G or 3G network.
+
+\subsection{LTE -- 3.9th or 4th generation???}
+Initially, it was discussed whether LTE could be classified as a 4\textsuperscript{th} generation mobile communication technology. The ITU-T organisation issues recommendations for mobile communication technologies, and there has been a consensus that mobile communication technologies that satisfy the requirements in the IMT-2000 recommendation can be classified as 3\textsuperscript{rd} generation technologies. This includes the original UMTS version and similar technologies in other parts of the world.
+
+The IMT-Advanced recommendation succeeded the IMT-2000 recommendation, so it would be natural to classify technologies that satisfy the requirements in the IMT-Advanced recommendation as 4\textsuperscript{th} generation technologies. LTE does not satisfy all of these requirements, so it was argued from a technical point-of-view that LTE should rather be classified as a 3.9\textsuperscript{th} generation technology since it satisfies most, but not all, of the IMT-Advanced requirements. However, the term ''3.9\textsuperscript{th} generation'' is not ideal from a marketing point-of-view, since customers might think that a newer and better mobile communication technology is ''just around the corner'' and delay their purchases. Therefore, operators generally markets LTE as a 4\textsuperscript{th} generation mobile communication technology.
+
+\subsection{LTE Advanced and LTE Advanced Pro}
+The next step in the evolution of mobile communication technologies is called \emph{LTE Advanced}, which supports increased downlink capacity of up to 1~Gbps and an uplink capacity of 500~Mbps. LTE Advanced satisfies the IMT-Advanced requirements, so it may be called a (true) 4\textsuperscript{th} generation mobile communication technology.
+
+\section{5G -- 5th generation mobile communication technology}
+The next step in the evolution of mobile communication technologies is (naturally) called the $5^{\textrm{th}}$ generation mobile communication technologies or simply 5G. Three categories of usage categories have been defined for 5G:
+\begin{itemize}
+%
+\item \textbf{enhanced Mobile BroadBand} (eMBB) -- This is essentially the same usage category as LTE, i.e., where subscribers send and receive traditional Internet traffic, but generally with a higher capacity; especially in so-called hotspots. In inner cities with dense coverage, the experienced capacity should be at least 100~Mbps and with a peak downlink bitrate of up to (in theory) 20~Gbps.
+%
+\item \textbf{Ultra-Reliable Low Latency Communications} (URLLC) -- This category covers scenarios where devices do not have the same high demands on capacity as the eMBB category, but instead require a very low latency (preferably in the order of a few ms) on the radio access part, and where the probability of losing a packet is less than $10^{-5}$ (a packet is considered lost if it has not been received correctly, even after multiple retransmissions, within the maximum allowed latency). Typical uses in this category includes communication between autonomous vehicles, remote surgery and industry automation, i.e., use-cases where amount of information to be transmitted is not necessarily high, but it is essential that the information is delivered quickly and reliably.
+%
+\item \textbf{massive Machine Type Communication} (mMTC) -- In some cases, the number of devices that needs to be able to communicate is very high, but the requirements of each individual device with respect to capacity and latency is limited. An example is an automated manufacturing plant that is equipped with a large number of sensors that monitor temperature, humidity, and so on. The sensors must transmit sensor readings to a central hub from time to time and the central hub must transmit commands to machinery on the factory floor. The sensors may be battery powered, so the communication needs to be optimised so that the batteries do not need to be changed frequently. mMTC usage scenarios are expected to support up to 1 million devices per $\textrm{km}^2$.
+%
+\end{itemize}
+
+The three categories described above have different requirements to how the information is transmitted on the radio interface and to the functionalities in the core network. For this reason, initial deployments of 5G are not expected to support all three categories from the start.
+
+Another ideas in the 5G concept is that a mobile terminal might be able to utilise different wireless technologies in parallel to achieve higher bit rates. Today, a mobile terminal will switch between different wireless technologies, \ie WiFi at home and work, 4G networks in the cities, and 2G/3G networks in rural areas, depending on the radio conditions but at any point in time, the mobile terminal will only use one wireless technology. In the 5G vision, a mobile terminal may use several wireless technologies at the same time to optimise the capacity, but it requires extensive coordination between the different networks.
+
+5G networks are also expected to use newer radio technologies to supplement the existing technologies. One example is to use a significantly higher frequency band, \eg around 26~GHz or 60~GHz. Compared to the existing frequency bands around 1-3~GHz, the higher frequency bands offer significantly more capacity, but a radio link at 26~GHz or 60~GHz will often require \emph{line--of--sight} conditions, \ie that there is an unobstructed view between the antennas on the mobile terminal and the antennas on the base station, since radio signals at these frequencies have difficulties in penetrating walls and similar. This means that these frequency bands can only be used in areas where it is possible to install many (small) antennas within a small area.
+
+\subsection{Summary of services in mobile communication networks}
+Table~\ref{tbl:mobileservices} summarises the different services in the different versions (generations) of mobile communication technologies.
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|l|l|}\hline
+\multirow{3}{*}{Voice} & \multirow{2}{*}{GSM} & Full Rate (FR) (13 kbps), Enhanced Full Rate (EFR)\\ 
+ & & (12.2 kbps), or Half Rate (HR) (6.5 kbps) \\ \cline{2-3}
+ & UMTS & Adaptive Multirate Coding (4.75~kbps -- 12.2~kbps)\\ \hline
+\multirow{12}{*}{Data} & \multirow{2}{*}{GSM} & Circuit-switched data -- 9.6 - 14.4 kbit/s \\
+ & & High Speed Circuit Switched Data (HSCSD) -- 57.6 kbit/s \\ \cline{2-3}
+ & \multirow{2}{*}{UMTS R99} & Shared connection -- Ca. 10-20 kbit/s \\
+ & & Dedicated connection -- 384 kbit/s \\ \cline{2-3}
+ & \multirow{2}{*}{HSPA} & Downlink (HSDPA) -- 14 Mbps (initially) \\
+ & & Uplink (HSUPA) -- 5.76 Mbps (initially) \\ \cline{2-3}
+ & \multirow{2}{*}{LTE} & Downlink (max.) -- 300~Mbps \\
+ & & Uplink (max.) -- 75~Mbps \\ \cline{2-3}
+ & \multirow{2}{*}{LTE Adv.} & Downlink (max.) -- 1~Gbps \\
+ & & Uplink (max.) -- 500~Mbps \\ \cline{2-3}
+ & \multirow{2}{*}{5G} & Downlink (max.) -- 20~Gbps \\
+ & & Uplink (max.) -- 10~Gbps \\ \hline
+ \multirow{2}{*}{Messaging} & \multirow{2}{*}{All} & Short Message Service (SMS) \\
+ & & Multimedia Messaging Service (MMS) \\ \hline
+\end{tabular}
+\caption{\label{tbl:mobileservices}Services in different mobile communication technologies.}
+\end{table}
+
+\section{Types of information}
+It is important to distinguish between two fundamental types of information that are found in mobile communication networks:
+\begin{itemize}
+%
+\item\textbf{User-information}: In the context of mobile data communication networks is typically traditional Internet traffic (such as the contents of webpages transferred with the HTTP protocol) that is exchanged between the users' terminal (mobile phone) and remote Internet servers.
+%
+\item\textbf{Signalling-information}: The signalling information (often just called signalling) is the control information that is exchanged between the mobile and the network to permit the user to send and receive user information. An example is the control messages that is exchanged when the mobile phone is powered on to authenticate both the user and the mobile phone. Another example is the control messages that are exchanged when the user moves from one cell to another in the mobile network while continuing to send and receive user-information.
+%
+\end{itemize}
