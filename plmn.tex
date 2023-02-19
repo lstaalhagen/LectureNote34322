@@ -2,7 +2,7 @@
 \clearpage\chapter{Cellular mobile networks}
 
 \section{Cellular networks}\label{sec:cellularnetworks}
-In mobile communication networks, the radio communication occurs between the subscriber's mobile terminal\footnote{Usually a traditional mobile phone but it may be any kind of device that has the ability to communicate.} and a base station consisting of a radio transceiver and an antenna. The base station is connected to the rest of the mobile communication network, as illustrated in Figure~\ref{fig:ms_and_basestation}, using (today) optical fibers or microwave links. An important concept is a \emph{cell}, which represents the area where a mobile phone can communicate with a specific base station. A network where a mobile phone can move between cells and still communicate is called a \emph{cellular network}.
+In mobile communication networks, the radio communication occurs between the subscriber's mobile terminal\footnote{Usually a traditional mobile phone but it may be any kind of device that has the ability to communicate.} and a base station consisting of a radio transceiver and an antenna. The base station is connected to the rest of the mobile communication network, as illustrated in Figure~\ref{fig:ms_and_basestation}, using (today) optical fibres or microwave links. An important concept is a \emph{cell}, which represents the area where a mobile phone can communicate with a specific base station. A network where a mobile phone can move between cells and still communicate is called a \emph{cellular network}.
 
 \begin{figure}[htbp]
 \centering
@@ -17,29 +17,25 @@ The distance between the mobile phone and a base station is limited for a number
 %
 \item The transmission power of a mobile must be limited to avoid that the battery is drained too fast, but as a radio signal attenuates with the distance (see section \ref{sec:pathloss}), the maximum distance between the mobile phone and the base station must be limited to ensure that the base station always receives a sufficiently strong radio signal.
 %
-\item Any cell has a capacity limit, such as the total amount of data that can be transmitted to and from the mobile phones in the cell. In areas with a high population density (e.g., major cities), the number of subscribers per $\textrm{km}^2$ is high, and the network must have a high capacity per $\textrm{km}^2$.  This means many cells are needed to cover the entire city, so one cell covers only a small area in this case. Cells in rural areas usually cover a larger area due to a lower population density. In a typical GSM network, a cell in a large city often only covers an area of around 1 $\textrm{km}^2$, whereas rural cells can cover an area of up to 10-100$\textrm{ km}^2$.
+\item Any cell has a capacity limit, such as the total amount of data that can be transmitted in the cell. In areas with a high population density (e.g., major cities), the number of subscribers per $\textrm{km}^2$ is high, so the network must have a high capacity per $\textrm{km}^2$.  This means many cells are needed to cover the entire city, so that each cell covers only a small area in this case. Cells in rural areas usually cover a larger area due to a lower population density. In a typical GSM network, a cell in a large city often only covers an area of around 1 $\textrm{km}^2$, whereas rural cells can cover an area of up to 10-100$\textrm{ km}^2$.
 %
 \end{itemize}
 
-To cover a large geographical area, such as an entire country, the operator must install many cells, and a mobile communication network based on this principle is called a \emph{cellular network}, as illustrated in Figure~\ref{fig:cellular}.
-
+To cover a large geographical area, such as an entire country, the operator must deploy many cells, and a mobile communication network based on this principle is called a \emph{cellular network}, as illustrated in Figure~\ref{fig:cellular}.
 \begin{figure}[htbp]
 \centering
 \scalebox{0.7}{\includegraphics{cellular3}}
 \caption{\label{fig:cellular}Cellular network.}
 \end{figure}
 
-Cells are not hexagonal in reality since the propagation of radio waves is influenced by different physical conditions -- see section~\ref{chap:radio}. Furthermore, cells overlap so there are areas where a mobile phone can communicate in more than one cell, \ie with more than one base station.
-
-In Figure~\ref{fig:cellular}, the base stations were placed in the centres of the cells and radio signals would propagate in all directions from the base station that use \emph{omnidirectional} antennas. Another configuration is often used in cities, where the area around the actual antenna mast (also called a \emph{site}) is divided into \emph{sectors} (equal to cells), as illustrated in Figure~\ref{fig:sectorized_3}, where each colour represents cells that share the same antenna mast.
-
+In reality, cells are not hexagonal since the propagation of radio waves is influenced by different physical conditions (see section~\ref{chap:radio}), and cells also overlap so there are areas where a mobile phone can communicate in more than one cell, \ie with more than one base station. In Figure~\ref{fig:cellular}, the base stations were placed in the centres of the cells and radio signals would propagate in all directions from a base station that use \emph{omnidirectional} antennas. Another configuration is often used in cities, where the area around the actual antenna mast (also called a \emph{site}) is divided into \emph{sectors} (equal to cells), as illustrated in Figure~\ref{fig:sectorized_3}, where each colour represents cells that share the same antenna mast.
 \begin{figure}[htbp]
 \centering
 \scalebox{0.7}{\includegraphics{sectorized_3}}
 \caption{\label{fig:sectorized_3}Cells as sectors.}
 \end{figure}
 
-In Figure~\ref{fig:sectorized_3}, each site has three antennas that transmits in a ''$120^\circ$'' pattern, so the site supports three antennas and thereby three cells. This configuration is preferred in cities since it reduces the need for sites, compared to the configuration in Figure~\ref{fig:cellular}, where each cell required its own site. Other configurations are also found, \eg four antennas, each covering about $90^\circ$ or two antennas that cover $180^\circ$ each.
+In Figure~\ref{fig:sectorized_3}, each site has three antennas that transmits in a ''$120^\circ$'' pattern, so the site supports three antennas and thereby three cells. This configuration is preferred in cities since it reduces the need for sites, compared to the configuration in Figure~\ref{fig:cellular}, where each cell required its own site. Other configurations are also common, \eg four antennas, each covering about $90^\circ$ or two antennas that cover $180^\circ$ each. In addition, specialised antennas with a narrow beam can be used as a supplement where additional capacity is required in a very limited area, such as a pedestrian zone.
 
 \subsection{Cell sites}
 Originally, a cell site consisted of an antenna mast with the actual antenna on top connected to the radio transceiver and baseband (BB) unit; both of which would be located in a cabinet or even a small building near the bottom of the mast, as illustrated in Figure~\ref{fig:site_old}.
@@ -116,7 +112,7 @@ The network architecture for LTE is illustrated in Figure~\ref{fig:lte_architect
 
 \begin{figure}[htbp]
 \centering
-\scalebox{0.7}{\includegraphics{lte_architecture3}}
+\scalebox{0.7}{\includegraphics{lte_architecture4}}
 \caption{\label{fig:lte_architecture}LTE network architecture.}
 \end{figure}
 
@@ -243,22 +239,22 @@ The tracking area update procedure consists\footnote{Similar to the attachment p
 \subsection{Handovers}\label{sec:handover}
 An essential function in any mobile communication network is to ensure that a call or a data transmission is not terminated abruptly if the user moves between cells, so a call or data transmission that starts in one cell must continue when the UE changes cell. The network must be able to ''move'' a call or data transmission from cell to cell, and this procedure is called a \emph{handover}\footnote{Various literature also uses the term \emph{handoff} for this functionality.}.
 
-In general, a handover is initiated when the quality of the radio link in the current cell deteriorates (\eg drop below a specified threshold), and a neighbour cell is available where the quality of the radio link is better. Different mobile communication technologies have implemented handover procedures differently, depending on A) where the decision to perform a handover is made and B) which information this decision is based on. The three possibilities are:
+A handover takes place when the radio link quality in the current cell deteriorates (\eg drops below a specified threshold), and a neighbour cell is available with a better radio link quality. Different mobile communication technologies have used different handover procedures, depending on where the decision to perform a handover is made and what information this decision is based on. The three possibilities are:
 
 \begin{itemize}
 %
-\item\textbf{Mobile Controlled} -- where the mobile phone autonomously decides when to perform a handover, based only on the mobile phone's measurements of the quality of the radio link in the current cell and neighbour cells. This principle is used in the DECT technology\footnote{DECT is technically not a ''real'' mobile communication technology, but when DECT is used to provide a cordless telephony service in, \eg large companies, there are similarities with ''true'' mobile communication networks, \eg that the covered area is divided into smaller areas that are controlled by base stations.}.
+\item\textbf{Mobile Controlled} -- where the mobile phone autonomously decides to perform a handover, based only on the mobile phone's measurements of the quality of the radio link in the current cell and neighbour cells. This principle is used in the DECT technology\footnote{DECT is technically not a ''real'' mobile communication technology, but when DECT is used to provide a cordless telephony service in, \eg large companies, there are similarities with ''true'' mobile communication networks, \eg that the covered area is divided into smaller areas that are controlled by base stations.}.
 %
 \item\textbf{Network Controlled} -- where the network decides, based on measurements of the strength of the radio signal from the mobile phone only. The old NMT mobile communication system used this principle.
 %
-\item\textbf{Mobile Assisted Network Controlled} -- where the network decides, based on both the network's measurements of the strength of the radio signal from the mobile phone and on measurements performed by the UE of the signal strength in the current cell and neighbour cells. This is the most common handover principle in mobile communication technologies today, including LTE.
+\item\textbf{Mobile Assisted Network Controlled} -- where the network decides, based on both the network's measurements of the strength of the radio signal from the mobile phone and on measurements performed by the UE of the signal strength in the current cell and neighbour cells. This is the most common handover principle in mobile communication technologies today, including LTE and 5G.
 %
 \end{itemize}
 
 \subsubsection{Handovers in LTE}
-The UE continuously measures the strength of the radio signal from the base station in the current cell, and (periodically) measures the strength in neighbouring cells. These measurements are subsequently transmitted to the eNodeB.
+The UE continuously measures the strength of the radio signal from the base station in the current cell, and (periodically) measures the strength in neighbouring cells, and these measurements are subsequently transmitted to the eNodeB.
 
-The base station measures the signal strength of the UE's transmissions, and combines these values with the measurements received from the UE, so the base station can determine the current radio conditions for the UE in both the uplink and the downlink direction. If the radio conditions falls below some threshold (\eg if the UE is moving away from the base station), then the base station will attempt to perform a handover. Based on the UE's neighbour cell measurements, the current base station selects which neighbour cell that the handover should take place to.
+The base station measures the signal strength of the UE's transmissions, and combines these values with the measurements received from the UE, so the base station can determine the current radio conditions for the UE in both uplink and downlink direction. If the radio conditions falls below some threshold (\eg if the UE is moving away from the base station), then the base station will attempt to perform a handover, and based on the UE's neighbour cell measurements, the current base station selects which neighbour cell that the handover should take place to.
 
 A handover in LTE takes place as illustrated in Figure~\ref{fig:LTE-HO} and described below.
 \begin{figure}[htbp]
@@ -284,7 +280,7 @@ This type of handover is termed \emph{break-before-make} because the UE ''breaks
 
 From the UE's point-of-view, the handover is complete when it starts communicating with the new cell, but a reconfiguration of the core-network is subsequently required. Immediately after the handover, IP-packets from the Internet to the UE are transmitted as in Figure~\ref{fig:LTE-HO}b), \ie via the sGW to the \emph{old} eNodeB (because the sGW is not yet aware of the handover) and then via the X2 interface to the new eNodeB. As this is not an optimal path, the core network is subsequently ''reconfigured'' after the handover, so that the sGW now sends IP-packets directly to the new eNodeB. Packets from the UE will, immediately after the handover, be sent to the new eNodeB and from here directly to the sGW, so in the uplink path is optimal.
 
-The type of LTE handover described above is called an \emph{X2 handover} since it utilises the X2-connection between the two eNodeB. However, not all pair of neighbouring eNodeBs may have an X2 interface between them. In this case, the handover will involve the core part of the network as illustrated in Figure~\ref{fig:LTE_Handover4}. This type of handover is called a \emph{S1 handover} since the interface between eNodeBs and sGWs are called the S1-interface.
+The type of LTE handover described above is called an \emph{X2 handover} since it utilises the X2-connection between the two eNodeBs. However, not all pair of neighbouring eNodeBs may have an X2 interface between them so in this case, the handover involves the core part of the network as illustrated in Figure~\ref{fig:LTE_Handover4}. This is called a \emph{S1 handover} since the interface between eNodeBs and sGWs is called the S1-interface.
 
 \begin{figure}[htbp]
 \centering
@@ -295,9 +291,7 @@ The type of LTE handover described above is called an \emph{X2 handover} since i
 In an S1-handover, the old eNodeB will (after the handover) relay IP-packets to the new eNodeB through the sGW as illustrated, but as soon as the core network has been reconfigured, the PDN-GW will forward packets to the correct (new) sGW. If the old and the new eNodeB are not connected to the same sGW, the relaying of packets from the old eNodeB to the new eNodeB takes place via the new eNodeB's sGW.
 
 \section{5G deployment}
-It can be costly for an operator to introduce a new mobile technology in the operator's network, and 5G is no exception.
-
-To simplify the introduction of 5G, most operators (who already have a 4G/LTE mobile network) introduce 5G in the so-called \emph{Non-Standalone Architecture} (NSA) mode. In this case, the operator still uses the 4G core network for control and signalling.
+It can be costly for an operator to introduce a new mobile technology in the operator's network, and 5G is no exception. To simplify the introduction of 5G, most operators (who already have a 4G/LTE mobile network) introduce 5G in the so-called \emph{Non-Standalone Architecture} (NSA) mode. In this case, the operator still uses the 4G core network for control and signalling. 
 
 In NSA mode, the mobile is said to be \emph{anchored} on a 4G network, so it receives control messages, such as broadcasted cell information messages and pageing messages via the 4G network. However, when the mobile wants to send/receive user-information, a 5G carrier is activated and added to the mobile's session so (user-)data transfers can utilize the high capacity of 5G NR.
 
